@@ -5,92 +5,126 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Damian's Website</title>
     <style>
-      /* Light Mode Styles (Default) */
+      /* Light Mode Backdrop Settings */
       body { 
         font-family: Arial, sans-serif; 
         max-width: 800px;
         margin: 0 auto; 
-        padding: 20px; 
-        background: #eef2f5; 
-        color: #333333;
+        padding: 40px 20px; 
+        
+        /* Modern Soft Gradient & Grid Pattern Background */
+        background-color: #f3f4f6;
+        background-image: 
+          radial-gradient(#e5e7eb 1.5px, transparent 1.5px), 
+          linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        background-size: 24px 24px, 100% 100%;
+        
+        color: #1f2937;
         transition: background 0.3s, color 0.3s;
       }
-      h1 { color: #1F4E79; transition: color 0.3s; }
-      p  { line-height: 1.6; margin: 0; }
-      a  { color: #2E75B6; font-weight: bold; }
+      
+      h1 { 
+        color: #1F4E79; 
+        transition: color 0.3s; 
+        margin-bottom: 30px;
+        font-size: 2.5rem;
+      }
+      p  { line-height: 1.6; margin: 0; color: #4b5563; }
+      a  { color: #2E75B6; font-weight: bold; text-decoration: none; }
+      a:hover { text-decoration: underline; }
 
-      /* Section Card Styling */
+      /* Presentable Content Cards */
       .section-card {
-        background: #ffffff;
-        padding: 20px;
-        margin: 20px 0;
-        border-radius: 8px; 
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
-        transition: background-color 0.3s, box-shadow 0.3s;
+        background: rgba(255, 255, 255, 0.95);
+        padding: 24px;
+        margin: 24px 0;
+        border-radius: 12px; 
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+        border: 1px solid rgba(229, 231, 235, 0.5);
+        backdrop-filter: blur(8px); /* Subtle premium glass effect */
+        transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
+      }
+      
+      /* Subtle hover effect to bring cards forward */
+      .section-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.07);
       }
       
       .section-card h2 { 
         color: #2E75B6; 
         margin-top: 0;
-        margin-bottom: 12px;
-        border-bottom: 2px solid #e2e8f0; 
-        padding-bottom: 8px;
+        margin-bottom: 14px;
+        border-bottom: 2px solid #f1f5f9; 
+        padding-bottom: 10px;
+        font-size: 1.4rem;
         transition: color 0.3s, border-color 0.3s; 
       }
 
-      /* Countdown Text Highlight */
+      /* Countdown Styling */
       .countdown-display {
-        font-size: 24px;
+        font-size: 26px;
         font-weight: bold;
         color: #1F4E79;
-        margin-top: 10px;
+        margin-top: 5px;
+        font-family: monospace; /* Kept clean and legible */
         transition: color 0.3s;
       }
 
-      /* Dark Mode Styles */
+      /* Dark Mode Backdrop Settings */
       body.dark-mode {
-        background: #121212;
-        color: #e0e0e0;
+        background-color: #0f172a;
+        background-image: 
+          radial-gradient(#334155 1px, transparent 1px), 
+          linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: #f1f5f9;
       }
       body.dark-mode h1 {
-        color: #6ba4e8;
+        color: #38bdf8;
+      }
+      body.dark-mode p {
+        color: #94a3b8;
       }
       body.dark-mode .section-card {
-        background: #1e1e1e; 
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        background: rgba(30, 41, 59, 0.8);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(51, 65, 85, 0.5);
       }
       body.dark-mode .section-card h2 {
-        color: #4f9cf2;
-        border-bottom: 2px solid #333333;
+        color: #38bdf8;
+        border-bottom: 2px solid #334155;
       }
       body.dark-mode a {
-        color: #4f9cf2;
+        color: #38bdf8;
       }
       body.dark-mode .countdown-display {
-        color: #6ba4e8;
+        color: #38bdf8;
       }
 
-      /* Toggle Button Styles */
+      /* Toggle Button Styling */
       .theme-btn {
-        padding: 10px 15px;
+        padding: 10px 18px;
         font-size: 14px;
         cursor: pointer;
-        border: none;
-        border-radius: 5px;
-        background-color: #1F4E79;
-        color: white;
-        font-weight: bold;
+        border: 1px solid rgba(229, 231, 235, 0.8);
+        border-radius: 20px; /* Rounded pill style look */
+        background-color: #ffffff;
+        color: #1f2937;
+        font-weight: 600;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        transition: background-color 0.3s, color 0.3s;
       }
       body.dark-mode .theme-btn {
-        background-color: #e0e0e0;
-        color: #121212;
+        background-color: #1e293b;
+        color: #f1f5f9;
+        border: 1px solid rgba(51, 65, 85, 0.8);
       }
     </style>
   </head>
   <body>
-    <!-- Theme Toggle Button -->
-    <div style="text-align: right;">
-      <button class="theme-btn" id="themeToggle">Switch to Dark Mode</button>
+    <!-- Top Bar with Toggle Button -->
+    <div style="text-align: right; margin-bottom: 10px;">
+      <button class="theme-btn" id="themeToggle">🌙 Dark Mode</button>
     </div>
 
     <h1>Hi, I'm Damian!</h1>
@@ -123,50 +157,44 @@
     <div class="section-card">
       <h2>My GitHub</h2>
       <p>Check out my projects: 
-        <a href="https://github.com">GITHUB LINK</a>
+        <a href="https://github.com" target="_blank">GITHUB LINK</a>
       </p>
     </div>
 
-    <!-- JavaScript to Handle Theme Toggle and Countdown Logic -->
+    <!-- JavaScript For Themes and Timer -->
     <script>
-      // Theme Toggle Logic
+      // Theme Switcher
       const toggleButton = document.getElementById('themeToggle');
       toggleButton.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
         if (document.body.classList.contains('dark-mode')) {
-          toggleButton.textContent = 'Switch to Light Mode';
+          toggleButton.innerHTML = '☀️ Light Mode';
         } else {
-          toggleButton.textContent = 'Switch to Dark Mode';
+          toggleButton.innerHTML = '🌙 Dark Mode';
         }
       });
 
-      // Countdown Timer Logic
+      // Christmas Timer Logic
       function updateCountdown() {
         const now = new Date();
         const currentYear = now.getFullYear();
-        
-        // Set target to Dec 25 of the current year
         let christmasTarget = new Date(`December 25, ${currentYear} 00:00:00`);
         
-        // If Christmas has already passed this year, point to next year's Christmas
         if (now > christmasTarget) {
           christmasTarget = new Date(`December 25, ${currentYear + 1} 00:00:00`);
         }
         
         const timeDifference = christmasTarget - now;
         
-        // Convert milliseconds to days, hours, minutes, and seconds
         const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
         const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
         const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
         
-        // Update the HTML element
         document.getElementById('countdown').textContent = 
           `${days}d ${hours}h ${minutes}m ${seconds}s`;
       }
 
-      // Run the countdown immediately on load, then refresh every second
       updateCountdown();
       setInterval(updateCountdown, 1000);
     </script>
