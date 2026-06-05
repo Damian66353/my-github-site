@@ -188,27 +188,25 @@
     <!-- Bento Grid Structure -->
     <div class="bento-grid">
       
-      <!-- Box 1: About Me (Large View) -->
+      <!-- Box 1: About Me -->
       <div class="bento-card span-2" data-tilt>
         <h2>👤 About Me</h2>
         <p>My birthday is March 16 and I like listening to music. I am currently expanding my skills as a creator and exploring the world of programming.</p>
       </div>
 
-      <!-- Box 2 (Country Choice Dropdown) has been completely removed using valid HTML syntax -->
-
-      <!-- Box 3: Live Christmas Clock -->
+      <!-- Box 2: Live Christmas Clock -->
       <div class="bento-card" data-tilt>
         <h2>🎄 Days Until Christmas</h2>
         <div class="countdown-display" id="countdown">00d 00h 00m 00s</div>
       </div>
 
-      <!-- Box 4: Gaming & Music Interests -->
+      <!-- Box 3: Gaming & Music Interests -->
       <div class="bento-card span-2" data-tilt>
         <h2>🎮 Gamer & Audiophile</h2>
         <p>I like to play competitive video games with my friends online and discover emerging music genres daily.</p>
       </div>
 
-      <!-- Box 6: Modern Music Tracker Display -->
+      <!-- Box 4: Modern Music Tracker Display -->
       <div class="bento-card" data-tilt>
         <h2>🎵 Favorite Beats Playlist</h2>
         <div class="spotify-container">
@@ -240,7 +238,7 @@
         </div>
       </div>
 
-      <!-- Box 7: Footer Project Links -->
+      <!-- Box 6: Footer Project Links -->
       <div class="bento-card span-3" data-tilt>
         <h2>💻 Open Source Engineering Hub</h2>
         <p>Inspect my active code repositories, software experiments, and course assignments: 
@@ -254,14 +252,16 @@
     <script>
       // 1. Theme Configuration Logic
       const toggleButton = document.getElementById('themeToggle');
-      toggleButton.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-        if (document.body.classList.contains('dark-mode')) {
-          toggleButton.innerHTML = '☀️ Light Mode';
-        } else {
-          toggleButton.innerHTML = '🌙 Dark Mode';
-        }
-      });
+      if (toggleButton) {
+        toggleButton.addEventListener('click', () => {
+          document.body.classList.toggle('dark-mode');
+          if (document.body.classList.contains('dark-mode')) {
+            toggleButton.innerHTML = '☀️ Light Mode';
+          } else {
+            toggleButton.innerHTML = '🌙 Dark Mode';
+          }
+        });
+      }
 
       // 2. Interactive Title Typing Animation Logic
       const words = ["Damian!", "a Student.", "a Gamer.", "a Web Developer."];
@@ -269,6 +269,7 @@
       const targetElement = document.getElementById("typing-text");
 
       function processTypingEffect() {
+        if (!targetElement) return;
         const currentWord = words[wordIdx];
         if (isDeleting) {
           charIdx--;
@@ -281,12 +282,12 @@
         if (isDeleting) delayTime /= 2;
 
         if (!isDeleting && charIdx === currentWord.length) {
-          delayTime = 1500; // Pause showing full word
+          delayTime = 1500;
           isDeleting = true;
         } else if (isDeleting && charIdx === 0) {
           isDeleting = false;
           wordIdx = (wordIdx + 1) % words.length;
-          delayTime = 400; // Pause before starting next word
+          delayTime = 400;
         }
         setTimeout(processTypingEffect, delayTime);
       }
@@ -294,6 +295,9 @@
 
       // 3. Live Christmas Countdown Logic
       function runCountdownTimer() {
+        const countdownEl = document.getElementById('countdown');
+        if (!countdownEl) return;
+        
         const now = new Date();
         let target = new Date(`December 25, ${now.getFullYear()} 00:00:00`);
         if (now > target) target = new Date(`December 25, ${now.getFullYear() + 1} 00:00:00`);
