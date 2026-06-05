@@ -11,7 +11,7 @@
         max-width: 800px;
         margin: 0 auto; 
         padding: 20px; 
-        background: #eef2f5; /* Slightly softer background */
+        background: #eef2f5; 
         color: #333333;
         transition: background 0.3s, color 0.3s;
       }
@@ -24,8 +24,8 @@
         background: #ffffff;
         padding: 20px;
         margin: 20px 0;
-        border-radius: 8px; /* Rounds the corners of the squares */
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); /* Adds a subtle shadow */
+        border-radius: 8px; 
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05); 
         transition: background-color 0.3s, box-shadow 0.3s;
       }
       
@@ -38,6 +38,15 @@
         transition: color 0.3s, border-color 0.3s; 
       }
 
+      /* Countdown Text Highlight */
+      .countdown-display {
+        font-size: 24px;
+        font-weight: bold;
+        color: #1F4E79;
+        margin-top: 10px;
+        transition: color 0.3s;
+      }
+
       /* Dark Mode Styles */
       body.dark-mode {
         background: #121212;
@@ -47,7 +56,7 @@
         color: #6ba4e8;
       }
       body.dark-mode .section-card {
-        background: #1e1e1e; /* Dark background for the squares */
+        background: #1e1e1e; 
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
       }
       body.dark-mode .section-card h2 {
@@ -56,6 +65,9 @@
       }
       body.dark-mode a {
         color: #4f9cf2;
+      }
+      body.dark-mode .countdown-display {
+        color: #6ba4e8;
       }
 
       /* Toggle Button Styles */
@@ -83,6 +95,12 @@
 
     <h1>Hi, I'm Damian!</h1>
  
+    <!-- Christmas Countdown Box -->
+    <div class="section-card">
+      <h2>Christmas Countdown 🎄</h2>
+      <div class="countdown-display" id="countdown">Loading countdown...</div>
+    </div>
+
     <!-- About Me Box -->
     <div class="section-card">
       <h2>About Me</h2>
@@ -109,19 +127,48 @@
       </p>
     </div>
 
-    <!-- JavaScript to Handle the Toggle functionality -->
+    <!-- JavaScript to Handle Theme Toggle and Countdown Logic -->
     <script>
+      // Theme Toggle Logic
       const toggleButton = document.getElementById('themeToggle');
-      
       toggleButton.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
-        
         if (document.body.classList.contains('dark-mode')) {
           toggleButton.textContent = 'Switch to Light Mode';
         } else {
           toggleButton.textContent = 'Switch to Dark Mode';
         }
       });
+
+      // Countdown Timer Logic
+      function updateCountdown() {
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        
+        // Set target to Dec 25 of the current year
+        let christmasTarget = new Date(`December 25, ${currentYear} 00:00:00`);
+        
+        // If Christmas has already passed this year, point to next year's Christmas
+        if (now > christmasTarget) {
+          christmasTarget = new Date(`December 25, ${currentYear + 1} 00:00:00`);
+        }
+        
+        const timeDifference = christmasTarget - now;
+        
+        // Convert milliseconds to days, hours, minutes, and seconds
+        const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
+        
+        // Update the HTML element
+        document.getElementById('countdown').textContent = 
+          `${days}d ${hours}h ${minutes}m ${seconds}s`;
+      }
+
+      // Run the countdown immediately on load, then refresh every second
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
     </script>
   </body>
 </html>
