@@ -106,12 +106,13 @@
       a { color: var(--primary); font-weight: bold; text-decoration: none; }
       a:hover { text-decoration: underline; }
 
-      /* Countdown Clock */
+      /* Countdown Clock Display */
       .countdown-display {
-        font-size: 26px;
+        font-size: 24px;
         font-weight: bold;
         color: var(--primary);
         font-family: monospace; 
+        letter-spacing: 0.5px;
       }
 
       /* Skill Level Up Meters */
@@ -293,12 +294,11 @@
       }
       processTypingEffect();
 
-      // 3. Live Christmas Countdown Logic
+      // 3. Live Christmas Countdown Logic (Robust Calculation)
       function runCountdownTimer() {
         const countdownEl = document.getElementById('countdown');
         if (!countdownEl) return;
         
         const now = new Date();
-        let target = new Date(`December 25, ${now.getFullYear()} 00:00:00`);
-        if (now > target) target = new Date(`December 25, ${now.getFullYear() + 1} 00:00:00`);
+        const currentYear = now.getFullYear();
         
