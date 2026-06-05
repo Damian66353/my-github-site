@@ -61,46 +61,13 @@
         transition: color 0.3s, border-color 0.3s; 
       }
 
-      /* Country Selector Form Elements */
-      .selector-group {
-        display: flex;
-        flex-direction: column;
-        gap: 10px;
-        max-width: 300px;
-        margin-top: 10px;
-      }
-      
-      .country-select {
-        padding: 12px;
-        font-size: 16px;
-        border-radius: 8px;
-        border: 1px solid #d1d5db;
-        background-color: #ffffff;
-        color: #1f2937;
-        cursor: pointer;
-        outline: none;
-        transition: border-color 0.2s, background-color 0.3s, color 0.3s;
-      }
-
-      .country-select:focus {
-        border-color: #2E75B6;
-      }
-
-      .selection-response {
-        margin-top: 10px;
-        font-weight: 600;
-        color: #1F4E79;
-        min-height: 24px;
-        transition: color 0.3s;
-      }
-
       /* Countdown Styling */
       .countdown-display {
         font-size: 26px;
         font-weight: bold;
         color: #1F4E79;
         margin-top: 5px;
-        font-family: monospace; 
+        font-family: monospace; /* Kept clean and legible */
         transition: color 0.3s;
       }
 
@@ -112,9 +79,12 @@
           linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
         color: #f1f5f9;
       }
-      body.dark-mode h1 { color: #38bdf8; }
-      body.dark-mode p { color: #94a3b8; }
-      
+      body.dark-mode h1 {
+        color: #38bdf8;
+      }
+      body.dark-mode p {
+        color: #94a3b8;
+      }
       body.dark-mode .section-card {
         background: rgba(30, 41, 59, 0.8);
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
@@ -124,14 +94,11 @@
         color: #38bdf8;
         border-bottom: 2px solid #334155;
       }
-      body.dark-mode a { color: #38bdf8; }
-      body.dark-mode .countdown-display { color: #38bdf8; }
-      body.dark-mode .selection-response { color: #38bdf8; }
-      
-      body.dark-mode .country-select {
-        background-color: #1e293b;
-        border-color: #334155;
-        color: #f1f5f9;
+      body.dark-mode a {
+        color: #38bdf8;
+      }
+      body.dark-mode .countdown-display {
+        color: #38bdf8;
       }
 
       /* Toggle Button Styling */
@@ -140,7 +107,7 @@
         font-size: 14px;
         cursor: pointer;
         border: 1px solid rgba(229, 231, 235, 0.8);
-        border-radius: 20px; 
+        border-radius: 20px; /* Rounded pill style look */
         background-color: #ffffff;
         color: #1f2937;
         font-weight: 600;
@@ -162,32 +129,6 @@
 
     <h1>Hi, I'm Damian!</h1>
  
-    <!-- Where Are You From Selection Card -->
-    <div class="section-card">
-      <h2>Where are you from? 🌍</h2>
-      <div class="selector-group">
-        <select class="country-select" id="countrySelector">
-          <option value="" disabled selected>Choose a country...</option>
-          <option value="Argentina">🇦🇷 Argentina</option>
-          <option value="Australia">🇦🇺 Australia</option>
-          <option value="Brazil">🇧🇷 Brazil</option>
-          <option value="Canada">🇨🇦 Canada</option>
-          <option value="China">🇨🇳 China</option>
-          <option value="France">🇫🇷 France</option>
-          <option value="Germany">🇩🇪 Germany</option>
-          <option value="India">🇮🇳 India</option>
-          <option value="Italy">🇮🇹 Italy</option>
-          <option value="Japan">🇯🇵 Japan</option>
-          <option value="Mexico">🇲🇽 Mexico</option>
-          <option value="Poland">🇵🇱 Poland</option>
-          <option value="Spain">🇪🇸 Spain</option>
-          <option value="the United Kingdom">🇬🇧 United Kingdom</option>
-          <option value="the United States">🇺🇸 United States</option>
-        </select>
-        <div class="selection-response" id="selectionMessage"></div>
-      </div>
-    </div>
-
     <!-- Christmas Countdown Box -->
     <div class="section-card">
       <h2>Christmas Countdown 🎄</h2>
@@ -206,10 +147,10 @@
       <p>I like to play video games with my friends and hear new music.</p>
     </div>
  
-    <!-- My Goals for This Course Box -->
+    <!-- My Goals Box -->
     <div class="section-card">
       <h2>My Goals for This Course</h2>
-      <p>I want to learn how can I use AI to make websites or apps.</p>
+      <p>I want to learn how can I use AI to make websides or app.</p>
     </div>
  
     <!-- My GitHub Box -->
@@ -220,7 +161,7 @@
       </p>
     </div>
 
-    <!-- JavaScript For Themes, Timer, and Country Interactivity -->
+    <!-- JavaScript For Themes and Timer -->
     <script>
       // Theme Switcher
       const toggleButton = document.getElementById('themeToggle');
@@ -231,15 +172,6 @@
         } else {
           toggleButton.innerHTML = '🌙 Dark Mode';
         }
-      });
-
-      // Country Selector Interactivity
-      const countrySelector = document.getElementById('countrySelector');
-      const selectionMessage = document.getElementById('selectionMessage');
-      
-      countrySelector.addEventListener('change', (event) => {
-        const selectedCountry = event.target.value;
-        selectionMessage.textContent = `Awesome! Welcome to my site visitor from ${selectedCountry}! 👋`;
       });
 
       // Christmas Timer Logic
