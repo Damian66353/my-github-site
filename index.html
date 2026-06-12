@@ -33,7 +33,7 @@
       a  { color: #2E75B6; font-weight: bold; text-decoration: none; }
       a:hover { text-decoration: underline; }
 
-      /* Presentable Content Cards */
+      /* Presentable Content Cards with Modern Grid Layout */
       .section-card {
         background: rgba(255, 255, 255, 0.95);
         padding: 24px;
@@ -43,6 +43,11 @@
         border: 1px solid rgba(229, 231, 235, 0.5);
         backdrop-filter: blur(8px); /* Subtle premium glass effect */
         transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
+        
+        display: grid;
+        grid-template-columns: 1fr 120px;
+        gap: 20px;
+        align-items: center;
       }
       
       /* Subtle hover effect to bring cards forward */
@@ -51,6 +56,11 @@
         box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.07);
       }
       
+      .card-text {
+        display: flex;
+        flex-direction: column;
+      }
+
       .section-card h2 { 
         color: #2E75B6; 
         margin-top: 0;
@@ -62,6 +72,16 @@
         display: flex;
         align-items: center;
         gap: 10px;
+      }
+
+      /* Image Formatting */
+      .section-image {
+        width: 100%;
+        height: 100px;
+        object-fit: cover;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        border: 1px solid rgba(229, 231, 235, 0.6);
       }
 
       /* Countdown Styling */
@@ -84,6 +104,7 @@
         border-radius: 6px;
         font-weight: bold;
         text-decoration: none;
+        align-self: flex-start;
         transition: background-color 0.2s;
       }
       .cad-link-btn:hover {
@@ -115,6 +136,7 @@
       body.dark-mode .countdown-display { color: #38bdf8; }
       body.dark-mode .cad-link-btn { background-color: #38bdf8; color: #0f172a; }
       body.dark-mode .cad-link-btn:hover { background-color: #7dd3fc; }
+      body.dark-mode .section-image { border: 1px solid rgba(51, 65, 85, 0.6); }
       
       /* Toggle Button Styling */
       .theme-btn {
@@ -134,6 +156,17 @@
         color: #f1f5f9;
         border: 1px solid rgba(51, 65, 85, 0.8);
       }
+
+      /* Responsive layout for smaller screens */
+      @media (max-width: 600px) {
+        .section-card {
+          grid-template-columns: 1fr;
+        }
+        .section-image {
+          height: 150px;
+          order: -1; /* Puts image above text on mobile devices */
+        }
+      }
     </style>
   </head>
   <body>
@@ -146,41 +179,59 @@
 
     <!-- Christmas Countdown Box -->
     <div class="section-card">
-      <h2><span>🎄</span> Christmas Countdown</h2>
-      <div class="countdown-display" id="countdown">Loading countdown...</div>
+      <div class="card-text">
+        <h2><span>🎄</span> Christmas Countdown</h2>
+        <div class="countdown-display" id="countdown">Loading countdown...</div>
+      </div>
+      <img class="section-image" src="https://unsplash.com" alt="Christmas Lights">
     </div>
 
     <!-- About Me Box -->
     <div class="section-card">
-      <h2><span>👦</span> About Me</h2>
-      <p>My birthday is March 16 🎂 and I like listening to music 🎧.</p>
+      <div class="card-text">
+        <h2><span>👦</span> About Me</h2>
+        <p>My birthday is March 16 🎂 and I like listening to music 🎧.</p>
+      </div>
+      <img class="section-image" src="https://unsplash.com" alt="Music Headphone Minimalist">
     </div>
  
     <!-- My Interests Box -->
     <div class="section-card">
-      <h2><span>🎮</span> My Interests</h2>
-      <p>I like to play video games with my friends 🕹️ and hear new music 🎵.</p>
+      <div class="card-text">
+        <h2><span>🎮</span> My Interests</h2>
+        <p>I like to play video games with my friends 🕹️ and hear new music 🎵.</p>
+      </div>
+      <img class="section-image" src="https://unsplash.com" alt="Video Game Controller Setup">
     </div>
 
     <!-- My CAD Projects Box -->
     <div class="section-card">
-      <h2><span>📐</span> My CAD Projects</h2>
-      <p>I design 3D models using cloud-based software. Click below to explore my workspace design directly in your browser:</p>
-      <a href="https://onshape.com" target="_blank" class="cad-link-btn">🚀 View 3D Model on Onshape</a>
+      <div class="card-text">
+        <h2><span>📐</span> My CAD Projects</h2>
+        <p>I design 3D models using cloud-based software. Click below to explore my workspace design directly in your browser:</p>
+        <a href="https://onshape.com" target="_blank" class="cad-link-btn">🚀 View 3D Model on Onshape</a>
+      </div>
+      <img class="section-image" src="https://unsplash.com" alt="3D Modeling Tech Workspace">
     </div>
  
     <!-- My Goals for This Course Box -->
     <div class="section-card">
-      <h2><span>🤖</span> My Goals for This Course</h2>
-      <p>I want to learn how can I use AI to make websites or apps 💻.</p>
+      <div class="card-text">
+        <h2><span>🤖</span> My Goals for This Course</h2>
+        <p>I want to learn how can I use AI to make websites or apps 💻.</p>
+      </div>
+      <img class="section-image" src="https://unsplash.com" alt="AI Abstract Art Concept">
     </div>
  
     <!-- My GitHub Box -->
     <div class="section-card">
-      <h2><span>🚀</span> My GitHub</h2>
-      <p>Check out my projects: 
-        <a href="https://github.com/Damian66353" target="_blank">GITHUB LINK 🔗</a>
-      </p>
+      <div class="card-text">
+        <h2><span>🚀</span> My GitHub</h2>
+        <p>Check out my projects: 
+          <a href="https://github.com" target="_blank">GITHUB LINK 🔗</a>
+        </p>
+      </div>
+      <img class="section-image" src="https://unsplash.com" alt="GitHub Coding Illustration">
     </div>
 
     <!-- JavaScript For Themes and Timer Interactivity -->
