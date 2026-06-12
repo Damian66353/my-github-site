@@ -33,7 +33,7 @@
       a  { color: #2E75B6; font-weight: bold; text-decoration: none; }
       a:hover { text-decoration: underline; }
 
-      /* Presentable Content Cards with Modern Grid Layout */
+      /* Presentable Content Cards */
       .section-card {
         background: rgba(255, 255, 255, 0.95);
         padding: 24px;
@@ -43,11 +43,6 @@
         border: 1px solid rgba(229, 231, 235, 0.5);
         backdrop-filter: blur(8px); /* Subtle premium glass effect */
         transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
-        
-        display: grid;
-        grid-template-columns: 1fr 120px;
-        gap: 20px;
-        align-items: center;
       }
       
       /* Subtle hover effect to bring cards forward */
@@ -56,11 +51,6 @@
         box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.07);
       }
       
-      .card-text {
-        display: flex;
-        flex-direction: column;
-      }
-
       .section-card h2 { 
         color: #2E75B6; 
         margin-top: 0;
@@ -72,23 +62,6 @@
         display: flex;
         align-items: center;
         gap: 10px;
-      }
-
-      /* Graphic Box Containers */
-      .svg-container {
-        width: 120px;
-        height: 100px;
-        background: #e2e8f0;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-        transition: background 0.3s;
-      }
-      .svg-container svg {
-        width: 60px;
-        height: 60px;
       }
 
       /* Countdown Styling */
@@ -111,7 +84,6 @@
         border-radius: 6px;
         font-weight: bold;
         text-decoration: none;
-        align-self: flex-start;
         transition: background-color 0.2s;
       }
       .cad-link-btn:hover {
@@ -143,7 +115,6 @@
       body.dark-mode .countdown-display { color: #38bdf8; }
       body.dark-mode .cad-link-btn { background-color: #38bdf8; color: #0f172a; }
       body.dark-mode .cad-link-btn:hover { background-color: #7dd3fc; }
-      body.dark-mode .svg-container { background: #334155; }
       
       /* Toggle Button Styling */
       .theme-btn {
@@ -163,18 +134,6 @@
         color: #f1f5f9;
         border: 1px solid rgba(51, 65, 85, 0.8);
       }
-
-      /* Responsive layout for smaller screens */
-      @media (max-width: 600px) {
-        .section-card {
-          grid-template-columns: 1fr;
-        }
-        .svg-container {
-          width: 100%;
-          height: 120px;
-          order: -1; 
-        }
-      }
     </style>
   </head>
   <body>
@@ -187,91 +146,41 @@
 
     <!-- Christmas Countdown Box -->
     <div class="section-card">
-      <div class="card-text">
-        <h2><span>🎄</span> Christmas Countdown</h2>
-        <div class="countdown-display" id="countdown">Loading countdown...</div>
-      </div>
-      <div class="svg-container">
-        <!-- Christmas Tree Vector Illustration -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2">
-          <path d="M12 2L3 17h18L12 2zM12 17v5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
+      <h2><span>🎄</span> Christmas Countdown</h2>
+      <div class="countdown-display" id="countdown">Loading countdown...</div>
     </div>
 
     <!-- About Me Box -->
     <div class="section-card">
-      <div class="card-text">
-        <h2><span>👦</span> About Me</h2>
-        <p>My birthday is March 16 🎂 and I like listening to music 🎧.</p>
-      </div>
-      <div class="svg-container">
-        <!-- Audio Headphones Vector Illustration -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="#3b82f6" stroke-width="2">
-          <path d="M3 18v-6a9 9 0 0 1 18 0v6M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
+      <h2><span>👦</span> About Me</h2>
+      <p>My birthday is March 16 🎂 and I like listening to music 🎧.</p>
     </div>
  
     <!-- My Interests Box -->
     <div class="section-card">
-      <div class="card-text">
-        <h2><span>🎮</span> My Interests</h2>
-        <p>I like to play video games with my friends 🕹️ and hear new music 🎵.</p>
-      </div>
-      <div class="svg-container">
-        <!-- Gamepad Controller Vector Illustration -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2">
-          <path d="M6 12h4M8 10v4M15 11h.01M18 13h.01" stroke-linecap="round" stroke-linejoin="round"/>
-          <rect x="2" y="6" width="20" height="12" rx="3" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
+      <h2><span>🎮</span> My Interests</h2>
+      <p>I like to play video games with my friends 🕹️ and hear new music 🎵.</p>
     </div>
 
     <!-- My CAD Projects Box -->
     <div class="section-card">
-      <div class="card-text">
-        <h2><span>📐</span> My CAD Projects</h2>
-        <p>I design 3D models using cloud-based software. Click below to explore my workspace design directly in your browser:</p>
-        <a href="https://onshape.com" target="_blank" class="cad-link-btn">🚀 View 3D Model on Onshape</a>
-      </div>
-      <div class="svg-container">
-        <!-- 3D Cube Geometry Vector Illustration -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="#a855f7" stroke-width="2">
-          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
+      <h2><span>📐</span> My CAD Projects</h2>
+      <p>I design 3D models using cloud-based software. Click below to explore my workspace design directly in your browser:</p>
+      <a href="https://onshape.com" target="_blank" class="cad-link-btn">🚀 View 3D Model on Onshape</a>
     </div>
  
     <!-- My Goals for This Course Box -->
     <div class="section-card">
-      <div class="card-text">
-        <h2><span>🤖</span> My Goals for This Course</h2>
-        <p>I want to learn how can I use AI to make websites or apps 💻.</p>
-      </div>
-      <div class="svg-container">
-        <!-- CPU / AI Brain Processor Illustration -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="#ec4899" stroke-width="2">
-          <rect x="4" y="4" width="16" height="16" rx="2"/>
-          <path d="M9 9h6v6H9zM2 9h2M2 15h2M20 9h2M20 15h2M9 2v2M15 2v2M9 20v2M15 20v2" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
+      <h2><span>🤖</span> My Goals for This Course</h2>
+      <p>I want to learn how can I use AI to make websites or apps 💻.</p>
     </div>
  
     <!-- My GitHub Box -->
     <div class="section-card">
-      <div class="card-text">
-        <h2><span>🚀</span> My GitHub</h2>
-        <p>Check out my projects: 
-          <a href="https://github.com" target="_blank">GITHUB LINK 🔗</a>
-        </p>
-      </div>
-      <div class="svg-container">
-        <!-- Terminal/Coding Code Blocks Vector Illustration -->
-        <svg viewBox="0 0 24 24" fill="none" stroke="#14b8a6" stroke-width="2">
-          <path d="M16 18l6-6-6-6M8 6l-6 6 6 6" stroke-linecap="round" stroke-linejoin="round"/>
-        </svg>
-      </div>
+      <h2><span>🚀</span> My GitHub</h2>
+      <p>Check out my projects: 
+        <a href="https://github.com/Damian66353" target="_blank">GITHUB LINK 🔗</a>
+      </p>
     </div>
 
     <!-- JavaScript For Themes and Timer Interactivity -->
@@ -286,4 +195,31 @@
           toggleButton.innerHTML = '🌙 Dark Mode';
         }
       });
+
+      // Christmas Timer Logic
+      function updateCountdown() {
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        let christmasTarget = new Date(`December 25, ${currentYear} 00:00:00`);
+        
+        if (now > christmasTarget) {
+          christmasTarget = new Date(`December 25, ${currentYear + 1} 00:00:00`);
+        }
+
+        const difference = christmasTarget - now;
+
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        const countdownElement = document.getElementById('countdown');
+        countdownElement.textContent = `${days}d ${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`;
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    </script>
+  </body>
+</html>
 
