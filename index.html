@@ -91,6 +91,48 @@
         text-decoration: none;
       }
 
+      /* Tetris Game Specific Layout */
+      .tetris-wrapper {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+        margin-top: 15px;
+      }
+      .tetris-stats {
+        font-size: 18px;
+        font-weight: bold;
+        color: #1F4E79;
+      }
+      #tetrisCanvas {
+        background: #111827;
+        border: 4px solid #2E75B6;
+        border-radius: 8px;
+        display: block;
+        max-width: 100%;
+      }
+      .tetris-controls {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 8px;
+        width: 100%;
+        max-width: 240px;
+      }
+      .btn-game {
+        padding: 12px;
+        font-size: 16px;
+        font-weight: bold;
+        background: #2E75B6;
+        color: white;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        user-select: none;
+        touch-action: manipulation;
+      }
+      .btn-game:hover { background: #1F4E79; }
+      .btn-span-3 { grid-column: span 3; }
+
       /* Dark Mode Backdrop Settings */
       body.dark-mode {
         background-color: #0f172a;
@@ -116,6 +158,11 @@
       body.dark-mode .cad-link-btn { background-color: #38bdf8; color: #0f172a; }
       body.dark-mode .cad-link-btn:hover { background-color: #7dd3fc; }
       
+      body.dark-mode .tetris-stats { color: #38bdf8; }
+      body.dark-mode #tetrisCanvas { border-color: #38bdf8; }
+      body.dark-mode .btn-game { background: #38bdf8; color: #0f172a; }
+      body.dark-mode .btn-game:hover { background: #7dd3fc; }
+
       /* Toggle Button Styling */
       .theme-btn {
         padding: 10px 18px;
@@ -160,6 +207,23 @@
     <div class="section-card">
       <h2><span>🎮</span> My Interests</h2>
       <p>I like to play video games with my friends 🕹️ and hear new music 🎵.</p>
+    </div>
+
+    <!-- Mini Tetris Game Box -->
+    <div class="section-card">
+      <h2><span>🕹️</span> Play Mini Tetris</h2>
+      <p>Use the Arrow Keys on your keyboard or click the controller layout below to clear horizontal lines!</p>
+      <div class="tetris-wrapper">
+        <div class="tetris-stats">Score: <span id="tetrisScore">0</span></div>
+        <canvas id="tetrisCanvas" width="240" height="400"></canvas>
+        <div class="tetris-controls">
+          <button class="btn-game btn-span-3" id="btnStart">Start / Restart</button>
+          <button class="btn-game" id="btnLeft">◀</button>
+          <button class="btn-game" id="btnRotate">▲</button>
+          <button class="btn-game" id="btnRight">▶</button>
+          <button class="btn-game btn-span-3" id="btnDown">▼ Soft Drop</button>
+        </div>
+      </div>
     </div>
 
     <!-- My CAD Projects Box -->
@@ -219,6 +283,11 @@
 
       updateCountdown();
       setInterval(updateCountdown, 1000);
-    </script>
-  </body>
-</html>
+
+      // --- TETRIS GAME LOGIC ---
+      const canvas = document.getElementById('tetrisCanvas');
+      const ctx = canvas.getContext('2d');
+      const scoreElement = document.getElementById('tetrisScore');
+      
+      const ROW = 20;
+      const COL = 12;
