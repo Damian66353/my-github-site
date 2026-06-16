@@ -1,7 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Damian's Website</title>
+    <style>
+      /* Light Mode Backdrop Settings */
+      body { 
+        font-family: Arial, sans-serif; 
+        max-width: 800px;
+        margin: 0 auto; 
+        padding: 40px 20px; 
+        
+        /* Modern Soft Gradient & Grid Pattern Background */
+        background-color: #f3f4f6;
+        background-image: 
+          radial-gradient(#e5e7eb 1.5px, transparent 1.5px), 
+          linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        background-size: 24px 24px, 100% 100%;
+        
+        color: #1f2937;
+        transition: background 0.3s, color 0.3s;
+      }
+      
+      h1 { 
+        color: #1F4E79; 
+        transition: color 0.3s; 
+        margin-bottom: 30px;
+        font-size: 2.5rem;
+      }
+      p  { line-height: 1.6; margin: 0; color: #4b5563; }
+      a  { color: #2E75B6; font-weight: bold; text-decoration: none; }
+      a:hover { text-decoration: underline; }
+
+      /* Presentable Content Cards */
+      .section-card {
+        background: rgba(255, 255, 255, 0.95);
+        padding: 24px;
+        margin: 24px 0;
+        border-radius: 12px; 
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
+        border: 1px solid rgba(229, 231, 235, 0.5);
+        backdrop-filter: blur(8px); /* Subtle premium glass effect */
+        transition: transform 0.2s, background-color 0.3s, box-shadow 0.3s;
+      }
+      
+      /* Subtle hover effect to bring cards forward */
+      .section-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.07);
+      }
+      
+      .section-card h2 { 
+        color: #2E75B6; 
+        margin-top: 0;
+        margin-bottom: 14px;
+        border-bottom: 2px solid #f1f5f9; 
+        padding-bottom: 10px;
+        font-size: 1.4rem;
+        transition: color 0.3s, border-color 0.3s; 
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      /* Countdown Styling */
+      .countdown-display {
+        font-size: 26px;
+        font-weight: bold;
+        color: #1F4E79;
+        margin-top: 5px;
+        font-family: monospace; 
+        transition: color 0.3s;
+      }
+
+      /* CAD Project Button Link Styling */
+      .cad-link-btn {
+        display: inline-block;
+        margin-top: 12px;
+        padding: 10px 20px;
+        background-color: #2E75B6;
+        color: white;
+        border-radius: 6px;
+        font-weight: bold;
+        text-decoration: none;
+        transition: background-color 0.2s;
+      }
+      .cad-link-btn:hover {
+        background-color: #1F4E79;
+        text-decoration: none;
+      }
+
+      /* Dark Mode Backdrop Settings */
+      body.dark-mode {
+        background-color: #0f172a;
+        background-image: 
+          radial-gradient(#334155 1px, transparent 1px), 
+          linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+        color: #f1f5f9;
+      }
+      body.dark-mode h1 { color: #38bdf8; }
+      body.dark-mode p { color: #94a3b8; }
+      
+      body.dark-mode .section-card {
+        background: rgba(30, 41, 59, 0.8);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        border: 1px solid rgba(51, 65, 85, 0.5);
+      }
+      body.dark-mode .section-card h2 {
+        color: #38bdf8;
+        border-bottom: 2px solid #334155;
+      }
+      body.dark-mode a { color: #38bdf8; }
+      body.dark-mode .countdown-display { color: #38bdf8; }
+      body.dark-mode .cad-link-btn { background-color: #38bdf8; color: #0f172a; }
+      body.dark-mode .cad-link-btn:hover { background-color: #7dd3fc; }
+      
+      /* Toggle Button Styling */
+      .theme-btn {
+        padding: 10px 18px;
+        font-size: 14px;
+        cursor: pointer;
+        border: 1px solid rgba(229, 231, 235, 0.8);
+        border-radius: 20px; 
+        background-color: #ffffff;
+        color: #1f2937;
+        font-weight: 600;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        transition: background-color 0.3s, color 0.3s;
+      }
+      body.dark-mode .theme-btn {
+        background-color: #1e293b;
+        color: #f1f5f9;
+        border: 1px solid rgba(51, 65, 85, 0.8);
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Top Bar with Toggle Button -->
+    <div style="text-align: right; margin-bottom: 10px;">
+      <button class="theme-btn" id="themeToggle">🌙 Dark Mode</button>
+    </div>
+
+    <h1>Hi, I'm Damian! 👋</h1>
+
+    <!-- Christmas Countdown Box -->
+    <div class="section-card">
+      <h2><span>🎄</span> Christmas Countdown</h2>
+      <div class="countdown-display" id="countdown">Loading countdown...</div>
+    </div>
+
+    <!-- About Me Box -->
+    <div class="section-card">
+      <h2><span>👦</span> About Me</h2>
+      <p>My birthday is March 16 🎂 and I like listening to music 🎧.</p>
+    </div>
+ 
+    <!-- My Interests Box -->
+    <div class="section-card">
+      <h2><span>🎮</span> My Interests</h2>
+      <p>I like to play video games with my friends 🕹️ and hear new music 🎵.</p>
+    </div>
+
+    <!-- My CAD Projects Box -->
+    <div class="section-card">
+      <h2><span>📐</span> My CAD Projects</h2>
+      <p>I design 3D models using cloud-based software. Click below to explore my workspace design directly in your browser:</p>
+      <a href="https://onshape.com" target="_blank" class="cad-link-btn">🚀 View 3D Model on Onshape</a>
+    </div>
+ 
+    <!-- My Goals for This Course Box -->
+    <div class="section-card">
+      <h2><span>🤖</span> My Goals for This Course</h2>
+      <p>I want to learn how can I use AI to make websites or apps 💻.</p>
+    </div>
+ 
     <!-- My GitHub Box -->
     <div class="section-card">
       <h2><span>🚀</span> My GitHub</h2>
-      <p>Check out my GitHub profile: 
-        <a href="https://github.com" target="_blank">Damian66353 Profile 🔗</a>
+      <p>Check out my projects: 
+        <a href="https://github.com/Damian66353" target="_blank">GITHUB LINK 🔗</a>
       </p>
     </div>
+
+    <!-- JavaScript For Themes and Timer Interactivity -->
+    <script>
+      // Theme Switcher
+      const toggleButton = document.getElementById('themeToggle');
+      toggleButton.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+        if (document.body.classList.contains('dark-mode')) {
+          toggleButton.innerHTML = '☀️ Light Mode';
+        } else {
+          toggleButton.innerHTML = '🌙 Dark Mode';
+        }
+      });
+
+      // Christmas Timer Logic
+      function updateCountdown() {
+        const now = new Date();
+        const currentYear = now.getFullYear();
+        let christmasTarget = new Date(`December 25, ${currentYear} 00:00:00`);
+        
+        if (now > christmasTarget) {
+          christmasTarget = new Date(`December 25, ${currentYear + 1} 00:00:00`);
+        }
+
+        const difference = christmasTarget - now;
+
+        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+
+        const countdownElement = document.getElementById('countdown');
+        countdownElement.textContent = `${days}d ${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`;
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+    </script>
+  </body>
+</html>
