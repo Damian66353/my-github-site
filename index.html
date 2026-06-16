@@ -247,9 +247,9 @@
       </p>
     </div>
 
-    <!-- JavaScript For Themes and Timer Interactivity -->
+    <!-- JavaScript For Themes, Timers, and Game Logic -->
     <script>
-      // Theme Switcher
+      // 1. Theme Switcher Logic
       const toggleButton = document.getElementById('themeToggle');
       toggleButton.addEventListener('click', () => {
         document.body.classList.toggle('dark-mode');
@@ -260,7 +260,7 @@
         }
       });
 
-      // Christmas Timer Logic
+      // 2. Christmas Timer Logic
       function updateCountdown() {
         const now = new Date();
         const currentYear = now.getFullYear();
@@ -278,16 +278,15 @@
         const seconds = Math.floor((difference % (1000 * 60)) / 1000);
 
         const countdownElement = document.getElementById('countdown');
-        countdownElement.textContent = `${days}d ${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`;
+        if (countdownElement) {
+          countdownElement.textContent = `${days}d ${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`;
+        }
       }
-
       updateCountdown();
       setInterval(updateCountdown, 1000);
 
-      // --- WORKING TETRIS GAME LOGIC ---
+      // 3. Tetris Game Logic
       const canvas = document.getElementById('tetrisCanvas');
       const ctx = canvas.getContext('2d');
       const scoreElement = document.getElementById('tetrisScore');
       
-      const ROW = 20;
-      const COL = 12;
