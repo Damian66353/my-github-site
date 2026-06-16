@@ -193,13 +193,13 @@
     <!-- Christmas Countdown Box -->
     <div class="section-card">
       <h2><span>🎄</span> Christmas Countdown</h2>
-      <div class="countdown-display" id="countdown">Loading countdown...</div>
+      <div class="countdown-display" id="countdown">0d 00h 00m 00s</div>
     </div>
 
     <!-- Back to School Countdown Box -->
     <div class="section-card">
       <h2><span>📚</span> Back to School</h2>
-      <div class="countdown-display" id="school-countdown">Loading countdown...</div>
+      <div class="countdown-display" id="school-countdown">0d 00h 00m 00s</div>
     </div>
 
     <!-- Section Group: About Me & Interests -->
@@ -235,10 +235,10 @@
         
         <!-- Grouped Link Buttons -->
         <div class="link-button-group">
-          <a href="https://cad.onshape.com/documents/3c56bde46c3cf13dbacf6aba/w/cffc9794b1a3e6809a0346bb/e/907eac023a19acbef41134d9?renderMode=0&uiState=6a318899ea545571af5a9fe9" target="_blank" class="cad-link-btn">
+          <a href="https://onshape.com" target="_blank" class="cad-link-btn">
             📐 View 3D Model on Onshape
           </a>
-          <a href="https://github.com/Damian66353" target="_blank" class="github-link-btn">
+          <a href="https://github.com" target="_blank" class="github-link-btn">
             🐙 Visit GitHub Profile
           </a>
         </div>
@@ -258,41 +258,34 @@
         }
       });
 
-      // Helper function to format time difference
-      function getTimeString(targetDate) {
-        const now = new Date();
-        const difference = targetDate - now;
-
-        if (difference <= 0) {
-          return "0d 00h 00m 00s";
-        }
-
-        const days = Math.floor(difference / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((difference % (1000 * 60)) / 1000);
-
-        return `${days}d ${hours.toString().padStart(2, '0')}h ${minutes.toString().padStart(2, '0')}m ${seconds.toString().padStart(2, '0')}s`;
-      }
-
-      // Universal Counter Update Execution
-      function updateAllCountdowns() {
+      // Rock-Solid cross-browser calculation function
+      function updateTimers() {
         const now = new Date();
         const currentYear = now.getFullYear();
 
-        // 1. Christmas Target Logic
-        let christmasTarget = new Date(`December 25, ${currentYear} 00:00:00`);
-        if (now > christmasTarget) {
-          christmasTarget = new Date(`December 25, ${currentYear + 1} 00:00:00`);
-        }
-        document.getElementById('countdown').textContent = getTimeString(christmasTarget);
+        // Target dates created via parameters (Year, MonthIndex, Day) to prevent browser interpretation bugs
+        // Note: Months are 0-indexed in JS (8 = September, 11 = December)
+        let schoolTarget = new Date(currentYear, 8, 10, 0, 0, 0);
+        let christmasTarget = new Date(currentYear, 11, 25, 0, 0, 0);
 
-        // 2. Back to School Target Logic (September 10)
-        let schoolTarget = new Date(`September 10, ${currentYear} 00:00:00`);
+        // If a date has already passed for this year, shift it to next year
         if (now > schoolTarget) {
-          schoolTarget = new Date(`September 10, ${currentYear + 1} 00:00:00`);
+          schoolTarget = new Date(currentYear + 1, 8, 10, 0, 0, 0);
         }
-        document.getElementById('school-countdown').textContent = getTimeString(schoolTarget);
-      }
+        if (now > christmasTarget) {
+          christmasTarget = new Date(currentYear + 1, 11, 25, 0, 0, 0);
+        }
 
-      updateAllCountdowns();
+        // Calculate and render Back to School
+        const schoolDiff = schoolTarget - now;
+        const sDays = Math.floor(schoolDiff / (1000 * 60 * 60 * 24));
+        const sHours = Math.floor((schoolDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const sMinutes = Math.floor((schoolDiff % (1000 * 60 * 60)) / (1000 * 60));
+        const sSeconds = Math.floor((schoolDiff % (1000 * 60)) / 1000);
+        document.getElementById('school-countdown').textContent = 
+          `${sDays}d ${sHours.toString().padStart(2, '0')}h ${sMinutes.toString().padStart(2, '0')}m ${sSeconds.toString().padStart(2, '0')}s`;
+
+        // Calculate and render Christmas
+        const xmasDiff = christmasTarget - now;
+        const xDays = Math.floor(xmasDiff / (1000 * 60 * 60 * 24));
+        const xHours = Math.floor((xmasDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
