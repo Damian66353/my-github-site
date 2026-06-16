@@ -33,11 +33,28 @@
       a  { color: #2E75B6; font-weight: bold; text-decoration: none; }
       a:hover { text-decoration: underline; }
 
+      /* Visual Topic Sections Container */
+      .topic-container {
+        margin: 32px 0;
+        padding: 16px;
+        border-radius: 16px;
+        background: rgba(243, 244, 246, 0.4);
+        border: 2px dashed rgba(209, 213, 219, 0.8);
+      }
+      .topic-heading {
+        font-size: 1.1rem;
+        text-transform: uppercase;
+        letter-spacing: 0.05em;
+        color: #4b5563;
+        margin: 0 0 12px 8px;
+        font-weight: 700;
+      }
+
       /* Presentable Content Cards */
       .section-card {
         background: rgba(255, 255, 255, 0.95);
         padding: 24px;
-        margin: 24px 0;
+        margin: 16px 0;
         border-radius: 12px; 
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05), 0 4px 6px -2px rgba(0, 0, 0, 0.02);
         border: 1px solid rgba(229, 231, 235, 0.5);
@@ -74,20 +91,38 @@
         transition: color 0.3s;
       }
 
-      /* CAD Project Button Link Styling */
-      .cad-link-btn {
-        display: inline-block;
-        margin-top: 12px;
-        padding: 10px 20px;
-        background-color: #2E75B6;
+      /* Button Link Group Container */
+      .link-button-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 16px;
+        margin-top: 16px;
+      }
+
+      /* Unified Button Styling */
+      .cad-link-btn, .github-link-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        padding: 12px 24px;
         color: white;
-        border-radius: 6px;
+        border-radius: 8px;
         font-weight: bold;
         text-decoration: none;
-        transition: background-color 0.2s;
+        transition: background-color 0.2s, transform 0.1s;
+      }
+      .cad-link-btn {
+        background-color: #2E75B6;
       }
       .cad-link-btn:hover {
         background-color: #1F4E79;
+        text-decoration: none;
+      }
+      .github-link-btn {
+        background-color: #24292e;
+      }
+      .github-link-btn:hover {
+        background-color: #010409;
         text-decoration: none;
       }
 
@@ -102,6 +137,14 @@
       body.dark-mode h1 { color: #38bdf8; }
       body.dark-mode p { color: #94a3b8; }
       
+      body.dark-mode .topic-container {
+        background: rgba(30, 41, 59, 0.2);
+        border: 2px dashed rgba(71, 85, 105, 0.6);
+      }
+      body.dark-mode .topic-heading {
+        color: #94a3b8;
+      }
+
       body.dark-mode .section-card {
         background: rgba(30, 41, 59, 0.8);
         box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
@@ -113,8 +156,11 @@
       }
       body.dark-mode a { color: #38bdf8; }
       body.dark-mode .countdown-display { color: #38bdf8; }
+      
       body.dark-mode .cad-link-btn { background-color: #38bdf8; color: #0f172a; }
       body.dark-mode .cad-link-btn:hover { background-color: #7dd3fc; }
+      body.dark-mode .github-link-btn { background-color: #475569; color: #f1f5f9; }
+      body.dark-mode .github-link-btn:hover { background-color: #64748b; }
       
       /* Toggle Button Styling */
       .theme-btn {
@@ -150,37 +196,47 @@
       <div class="countdown-display" id="countdown">Loading countdown...</div>
     </div>
 
-    <!-- About Me Box -->
-    <div class="section-card">
-      <h2><span>👦</span> About Me</h2>
-      <p>My birthday is March 16 🎂 and I like listening to music 🎧.</p>
-    </div>
- 
-    <!-- My Interests Box -->
-    <div class="section-card">
-      <h2><span>🎮</span> My Interests</h2>
-      <p>I like to play video games with my friends 🕹️ and hear new music 🎵.</p>
+    <!-- Section Group: About Me & Interests -->
+    <div class="topic-container">
+      <div class="topic-heading">👤 About Me & Interests</div>
+      
+      <!-- About Me Box -->
+      <div class="section-card">
+        <h2><span>👦</span> Personal Details</h2>
+        <p>My birthday is March 16 🎂 and I like listening to music 🎧.</p>
+      </div>
+   
+      <!-- My Interests Box -->
+      <div class="section-card">
+        <h2><span>🎮</span> Hobbies</h2>
+        <p>I like to play video games with my friends 🕹️ and hear new music 🎵.</p>
+      </div>
+
+      <!-- My Goals for This Course Box -->
+      <div class="section-card">
+        <h2><span>🤖</span> Course Goals</h2>
+        <p>I want to learn how can I use AI to make websites or apps 💻.</p>
+      </div>
     </div>
 
-    <!-- My CAD Projects Box -->
-    <div class="section-card">
-      <h2><span>📐</span> My CAD Projects</h2>
-      <p>I design 3D models using cloud-based software. Click below to explore my workspace design directly in your browser:</p>
-      <a href="https://cad.onshape.com/documents/3c56bde46c3cf13dbacf6aba/w/cffc9794b1a3e6809a0346bb/e/907eac023a19acbef41134d9?renderMode=0&uiState=6a318899ea545571af5a9fe9" target="_blank" class="cad-link-btn">🚀 View 3D Model on Onshape</a>
-    </div>
- 
-    <!-- My Goals for This Course Box -->
-    <div class="section-card">
-      <h2><span>🤖</span> My Goals for This Course</h2>
-      <p>I want to learn how can I use AI to make websites or apps 💻.</p>
-    </div>
- 
-    <!-- My GitHub Box -->
-    <div class="section-card">
-      <h2><span>🚀</span> My GitHub</h2>
-      <p>Check out my Profile: 
-        <a href="https://github.com/Damian66353" target="_blank">Github Profile 🔗</a>
-      </p>
+    <!-- Section Group: Linked Projects & Profiles -->
+    <div class="topic-container">
+      <div class="topic-heading">🔗 Connect & Projects</div>
+      
+      <div class="section-card">
+        <h2><span>🚀</span> My Web Portfolios</h2>
+        <p>Explore my external project links and development profiles below:</p>
+        
+        <!-- Grouped Link Buttons -->
+        <div class="link-button-group">
+          <a href="https://cad.onshape.com/documents/3c56bde46c3cf13dbacf6aba/w/cffc9794b1a3e6809a0346bb/e/907eac023a19acbef41134d9?renderMode=0&uiState=6a318899ea545571af5a9fe9" target="_blank" class="cad-link-btn">
+            📐 View 3D Model on Onshape
+          </a>
+          <a href="https://github.com/Damian66353" target="_blank" class="github-link-btn">
+            🐙 Visit GitHub Profile
+          </a>
+        </div>
+      </div>
     </div>
 
     <!-- JavaScript For Themes and Timer Interactivity -->
